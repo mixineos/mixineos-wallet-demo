@@ -72,19 +72,14 @@ export default {
     };
   },
   created() {
-    console.log("+++++++++++++++++created");      
-    document.dispatchEvent(new CustomEvent('scatterLoaded'));
-
-    setTimeout(()=>{
-      ScatterJS.scatter.connect("scatter-demo", { network }).then(connected => {
-        if (!connected) {
-          alert("no connect");
-          return false;
-        }
-        alert("connected");
-        scatter = ScatterJS.scatter;
-      });
-    }, 500);
+    ScatterJS.scatter.connect("scatter-demo", { network }).then(connected => {
+      if (!connected) {
+        alert("no connect");
+        return false;
+      }
+      alert("connected");
+      scatter = ScatterJS.scatter;
+    });
   },
 
   methods: {
@@ -106,31 +101,6 @@ export default {
         alert("connected");
         scatter = ScatterJS.scatter;
       });
-    },
-    authenticate: function() {
-      scatter
-        .authenticate("111222333444")
-        .then(signedOrigin => {
-          alert(signedOrigin);
-        })
-        .catch(failedAuthentication => {
-          alert(failedAuthentication);
-        });
-    },
-    requestTransfer: function() {
-      if (!this.currentAccount) {
-        alert("login first");
-        return;
-      }
-      const tokenDetails = {
-        contract: "eosiotptoken",
-        symbol: "TPT",
-        memo: "test donate",
-        decimals: 4
-      };
-      scatter
-        .requestTransfer(network, "itokenpocket", "0.0001", tokenDetails)
-        .then(res => alert(res));
     },
     account: function() {
       if (!this.currentAccount) {
@@ -179,46 +149,6 @@ export default {
           console.log("fail" + JSON.stringify(err));
         });
     },
-    stake: function() {
-      if (!this.currentAccount) {
-        alert("login first");
-        return;
-      }
-      api
-        .transact(
-          {
-            actions: [
-              {
-                account: "eosio",
-                name: "delegatebw",
-                authorization: [
-                  {
-                    actor: this.currentAccount,
-                    permission: this.currentPermission
-                  }
-                ],
-                data: {
-                  from: this.currentAccount,
-                  receiver: this.currentAccount,
-                  stake_cpu_quantity: "0.0001 EOS",
-                  stake_net_quantity: "0.0001 EOS",
-                  transfer: false
-                }
-              }
-            ]
-          },
-          {
-            blocksBehind: 3,
-            expireSeconds: 30
-          }
-        )
-        .then(data => {
-          alert(JSON.stringify(data));
-        })
-        .catch(err => {
-          console.log(JSON.stringify(err));
-        });
-    },
     logout: function() {
       if (!this.currentAccount) {
         alert("login first");
@@ -245,43 +175,6 @@ export default {
         .catch(error => {
           alert("get identity error");
           console.error(error);
-        });
-    },
-    getPubkey: function() {
-      if (!this.currentAccount) {
-        alert("login first");
-        return;
-      }
-      scatter.getPublicKey("eos").then(publicKey => {
-        alert(publicKey);
-      });
-    },
-    linkAccount: function() {
-      if (!this.currentAccount) {
-        alert("login first");
-        return;
-      }
-      let account = {
-        name: this.currentAccount,
-        authority: this.currentPermission,
-        publicKey: this.currentPublicKey
-      };
-      scatter.linkAccount(account, network).then(linked => {
-        alert(linked);
-      });
-    },
-    getIdentityFromPermissions: function() {
-      if (!this.currentAccount) {
-        alert("login first");
-        return;
-      }
-      scatter
-        .getIdentityFromPermissions()
-        .then(identity => {
-          alert(JSON.stringify(identity));
-        })
-        .catch(err => {
-          alert(err);
         });
     }
   }
