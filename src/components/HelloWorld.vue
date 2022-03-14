@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { InitWallet } from "mixineos-wallet"
+import { InitWallet, OAuth } from "mixineos-wallet"
 const members = [
     "e07c06fa-084c-4ce1-b14a-66a9cb147b9e",
     "e0148fc6-0e10-470e-8127-166e0829c839",
@@ -26,6 +26,7 @@ const members = [
     "49b00892-6954-4826-aaec-371ca165558a"
 ];
 
+/*
 InitWallet({
   node_url: "https://api.eosn.io",
   client_id: "d78a6e9e-5d23-4b24-8bf3-05dc8576cf8b", //"3e72ca0c-1bab-49ad-aa0a-4d8471d375e7",
@@ -33,9 +34,15 @@ InitWallet({
   mixinWrapTokenContract: "mixinwtokens",
   contractProcessId: "e0148fc6-0e10-470e-8127-166e0829c839",
   members,
+  lang: "en",
   debug: false,
   inject: true
 });
+*/
+
+const oauth = new OAuth();
+const scope = 'PROFILE:READ';
+oauth.authorize("d78a6e9e-5d23-4b24-8bf3-05dc8576cf8b", scope, "")
 
 import ScatterJS from "@scatterjs/core";
 import ScatterEOS from "@scatterjs/eosjs2";
@@ -77,7 +84,7 @@ export default {
         alert("no connect");
         return false;
       }
-      alert("connected");
+      // alert("connected");
       scatter = ScatterJS.scatter;
     });
   },
@@ -92,6 +99,7 @@ export default {
         // }
 
         // window.mixineos.pushAction("mixinwtokens", "transfer", args);
+      /*
       ScatterJS.scatter.connect("scatter-demo").then(connected => {
         if (!connected) {
           alert("no connect");
@@ -101,6 +109,7 @@ export default {
         alert("connected");
         scatter = ScatterJS.scatter;
       });
+      */
     },
     account: function() {
       if (!this.currentAccount) {
