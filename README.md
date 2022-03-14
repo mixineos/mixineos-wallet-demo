@@ -2,8 +2,6 @@
 
 mixineos wallet demo
 
-3. Following the below steps to run this project.
-
 ## Project setup
 ```
 npm install
