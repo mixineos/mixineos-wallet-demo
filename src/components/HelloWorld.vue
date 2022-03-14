@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { InitWallet, OAuth } from "mixineos-wallet"
+import { InitWallet, OAuth, generateChallenge } from "mixineos-wallet"
 const members = [
     "e07c06fa-084c-4ce1-b14a-66a9cb147b9e",
     "e0148fc6-0e10-470e-8127-166e0829c839",
@@ -42,7 +42,9 @@ InitWallet({
 
 const oauth = new OAuth();
 const scope = 'PROFILE:READ';
-oauth.authorize("d78a6e9e-5d23-4b24-8bf3-05dc8576cf8b", scope, "")
+const c = generateChallenge();
+console.log(c)
+oauth.authorize("d78a6e9e-5d23-4b24-8bf3-05dc8576cf8b", scope, c, "")
 
 import ScatterJS from "@scatterjs/core";
 import ScatterEOS from "@scatterjs/eosjs2";
