@@ -5187,16 +5187,17 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mixineos-wallet@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/mixineos-wallet/-/mixineos-wallet-0.1.4.tgz#0a4c4c43dc2b5328b6cb9f9c2f6cf14acdae11c9"
-  integrity sha512-g/HMolMiBMSbFTbxH/9h2tjK1xPS4WifljDLj8slVIFW5wZGRqoUZM6EyMPQpK6fNTNiOU/tKeXtFB3a2D4Gkg==
+mixineos-wallet@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/mixineos-wallet/-/mixineos-wallet-0.1.5.tgz#321f9f9e6efdd13bad49bc2cdc5d5d80ca8aee02"
+  integrity sha512-94h3PWG6wzIkDn6SHnoNgE1CuvLvs9UnZn+LND6lIyz+ltwQwdHSj9MNgCe0nMVM3HaCda0hbgIbfaSs4WZpVQ==
   dependencies:
     bignumber.js "^9.0.1"
     crypto-js "^4.0.0"
     eosjs "^21.0.4"
     qrcode "^1.4.4"
     reconnecting-websocket "^4.4.0"
+    sha256-uint8array "^0.10.3"
     sweetalert2 "^11.4.4"
     uuid "^8.3.2"
     uuidv4 "^6.2.7"
@@ -6891,6 +6892,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+sha256-uint8array@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/sha256-uint8array/-/sha256-uint8array-0.10.3.tgz#322a91413f78f518e0b9c8f8e982cc2e629b59c7"
+  integrity sha512-SFTs87RfXVulKrhhP6B5/qcFruOKQZaKf6jY9V4PJ7NOG0qIlQP6XL4pQq5xagsuP/Wd55S7tUBJpRajEsDUEQ==
 
 shebang-command@^1.2.0:
   version "1.2.0"
