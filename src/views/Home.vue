@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <a href="https://www.tokenpocket.pro/?from=scatter-demo-eosjs2"></a>
     <HelloWorld/>
   </div>
 </template>

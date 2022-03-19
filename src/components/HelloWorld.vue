@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { InitWallet } from "mixineos-wallet"
+import { InitWallet, HttpExtraDataProvider } from "mixineos-wallet"
 const members = [
     "e07c06fa-084c-4ce1-b14a-66a9cb147b9e",
     "e0148fc6-0e10-470e-8127-166e0829c839",
@@ -26,16 +26,20 @@ const members = [
     "49b00892-6954-4826-aaec-371ca165558a"
 ];
 
+
+
+let dataProvider =  new HttpExtraDataProvider({dataServerUrl: "http://localhost:8080"});
+
 InitWallet({
   eosRpcUrl: "https://api.eosn.io",
-  dataProvider: null,
+  dataProvider: dataProvider,
   appId: "d78a6e9e-5d23-4b24-8bf3-05dc8576cf8b", //"3e72ca0c-1bab-49ad-aa0a-4d8471d375e7",
   mainContract: "mixincrossss",
   mixinWrapTokenContract: "mixinwtokens",
   contractProcessId: "e0148fc6-0e10-470e-8127-166e0829c839",
   members,
   lang: "en",
-  debug: false,
+  debug: true,
   inject: true
 });
 
@@ -132,8 +136,8 @@ export default {
                 data: {
                   from: this.currentAccount,
                   to: "mixincrossss",
-                  quantity: "0.00010000 MEOS",
-                  memo: "test mixin wallet"
+                  quantity: "0.00030000 MEOS",
+                   memo: "mixin wallet test"
                 }
               }
             ]
